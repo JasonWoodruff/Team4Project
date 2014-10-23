@@ -1,9 +1,11 @@
-#ifndef dog.h
+#ifndef DOG_H
+#define DOG_H
+
 #include <iostream>
 #include <string>
 using namespace std;
 
-class dog
+class Dog
 {
 	int age;
 	string ID, //format DOG001, DOG002
@@ -21,8 +23,8 @@ class dog
 	void searchBySize();
 	void searchByName();
 	void listByID(dog[]);
-	void listByHashSequence(dog[]);//List by hash table sequence
-	void printIndentedTree(dog[]);
+	void listByHashSequence(Dog[]);//List by hash table sequence
+	void printIndentedTree(Dog[]);
 
 	
 	void efficiencyReport();
