@@ -21,6 +21,7 @@ class dog
 	void searchBySize();
 	void searchByName();
 	void listByID(dog[]);
+	void listByHashSequence(dog[]);//List by hash table sequence
 	void printIndentedTree(dog[]);
 
 	
