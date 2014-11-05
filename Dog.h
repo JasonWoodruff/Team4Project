@@ -1,18 +1,24 @@
+#pragma once
 #ifndef DOG_H
 #define DOG_H
-
-#include <iostream>
 #include <string>
+#include <iostream>
+
 using namespace std;
 
 class Dog
 {
+private:
 	int age;
-	string ID, //format DOG001, DOG002
-		name,
-		breed,
-		size, //small, medium, large
-		description;
+	string ID; //format DOG001, DOG002
+	string name;
+	string breed;
+	string size; //small, medium, large
+	string description;
+
+public:
+
+	Dog(int a, string strID, string strN, string strB, string strS, string strD);
 
 
 	void update();
@@ -22,7 +28,7 @@ class Dog
 	void searchByAge();
 	void searchBySize();
 	void searchByName();
-	void listByID(dog[]);
+	void listByID(Dog[]);
 	void listByHashSequence(Dog[]);//List by hash table sequence
 	void printIndentedTree(Dog[]);
 
