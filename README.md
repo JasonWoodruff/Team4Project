@@ -5,9 +5,5 @@ Team 4 Project for CIS22C
 
 Hi everyone,
 
-My name is Jason Woodruff.
-Editing Readme...
-
-Editing again
-
-James trying to edit
+You can also create folders by using
+folderName/fileName.cpp (no extension = folder)
