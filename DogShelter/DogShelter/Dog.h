@@ -19,20 +19,6 @@ public:
 
 	Dog(int a, string strID, string strN, string strB, string strS, string strD);
 
-
-	void update();
-	void add();
-	void deleteDog();
-	void searchByID();
-	void searchByAge();
-	void searchBySize();
-	void searchByName();
-	void listByID(Dog[]);
-	void listByHashSequence(Dog[]);//List by hash table sequence
-	void printIndentedTree(Dog[]);
-
-	
-	void efficiencyReport();
 };
 
 #endif
