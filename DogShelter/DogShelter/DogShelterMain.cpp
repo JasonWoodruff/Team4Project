@@ -16,6 +16,7 @@ Kevin Chen		-	Binary Search Tree
 
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 bool readDogsInFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
@@ -51,6 +52,8 @@ bool searchDogByName();
 bool searchDogByGender();
 bool searchDogByAge();
 bool searchDogByBreed();
+
+const string FILENAME = "dog.txt";
 
 int main()
 {
@@ -176,10 +179,20 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
 
 bool readDogsInFromFile(/*BinaryTree& dogIdTree*/)
 {
+	ifstream infile;
+	infile.open(FILENAME);
+	// will read in dogs hre
+	
+	infile.close;
 	return true;
 }
 bool updateDogFile(/*BinaryTree& dogIdTree*/)
 {
+	ofstream out;
+	out.open(FILENAME);
+	// will update dogs hre
+	
+	out.close;
 	return true;
 }
 
