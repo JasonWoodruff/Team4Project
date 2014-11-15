@@ -10,8 +10,8 @@ Bryson Li		-	I/O
 James Juchau	-	Hashed Table
 Kevin Chen		-	Binary Search Tree
 
-@version	1.0
-@since		11/10/2014
+@version	1.1
+@since		11/15/2014
 */
 
 #include <iostream>
@@ -180,19 +180,24 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
 bool readDogsInFromFile(/*BinaryTree& dogIdTree*/)
 {
 	ifstream infile;
-	infile.open(FILENAME);
+	infile.open(FILENAME.c_str());
 	// will read in dogs hre
-	
-	infile.close;
+	string temp;
+	cout << "File contains: " << endl;
+	while (getline(infile, temp))
+	{
+		cout << temp << endl;
+	}
+	infile.close();
 	return true;
 }
 bool updateDogFile(/*BinaryTree& dogIdTree*/)
 {
 	ofstream out;
-	out.open(FILENAME);
+	out.open(FILENAME.c_str());
 	// will update dogs hre
 	
-	out.close;
+	out.close();
 	return true;
 }
 

@@ -66,6 +66,12 @@
   <ItemGroup>
     <ClCompile Include="DogShelterMain.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dog.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dog.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
