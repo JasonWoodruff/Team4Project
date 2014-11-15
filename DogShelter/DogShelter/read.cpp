@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "dog.h"
+#include "Dog.h"
 
 using namespace std;
 

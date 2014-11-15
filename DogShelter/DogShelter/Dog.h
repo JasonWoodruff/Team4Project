@@ -8,16 +8,15 @@ using namespace std;
 class Dog
 {
 private:
-	int age;
 	string ID; //format DOG001, DOG002
 	string name;
+	string age;
 	string breed;
-	string size; //small, medium, large
 	string description;
 
 public:
-
-	Dog(int a, string strID, string strN, string strB, string strS, string strD);
+	Dog();
+	Dog(string strID, string strN, string strAge, string strB, string strD);
 
 };
 
