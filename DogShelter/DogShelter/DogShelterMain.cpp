@@ -241,22 +241,25 @@ int addToDog(string str)
 			case 0:	//ignores that particular character.
 				break;
 			case 1:	//moves onto next segment.
-//				cout << temp << endl;
 				segment[segmentNo] = temp;
 				segmentNo++;
 //				cout << "Segment has been successfully added." << endl;
 				temp = ""; //empties temp
-				//aDog.addData(temp);
+				//aDog.addData(temp); 
 				break;
 			case 2:
-//				cout << "case 2: " << temp << endl;
 //				cout << "Segment has been successfully added." << endl;
 				segment[segmentNo] = temp;
-				//segmentNo++;
 			}
 		}
 	}
 	// later will override ostream of Dog to print out this part;
+
+
+	// THIS PART
+	// IS WHERE YOU
+	// ADD THE DOG TO THE LIST/ BST
+	
 	string partsOfDog[] = { "ID", "Name", "Gender", "Age", "Breed", "Description", "extra?" };
 	cout << "Finished reading in dog with " << endl;
 	for (int i = 0; i < 6; i++)
