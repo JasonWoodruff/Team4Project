@@ -5,7 +5,7 @@ Hi everyone,
 You can also create folders by using
 folderName/fileName.cpp (no extension = folder)
 
-Remember the following commands:
-git pull (downloads changes)
-git commit -a  (commits changes)
-git push (push changes)   or  (git push origin master)
+Remember the following Git commands:
+1. **git pull** | downloads changes
+2. **git commit -a**---commits changes
+3. **git push** or **git push origin master**---push changes
