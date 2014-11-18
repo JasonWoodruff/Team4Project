@@ -196,8 +196,7 @@ int addToDog(string str)
 	map<char, int> ignore; //0 = ignore character, 1 = end of segment, 2 stop reading
 	ignore['<'] = 0;
 	ignore['>'] = 2;
-	//ignore['\r'] = 2; // '\r' is the end-of-line character
-	ignore['.'] = 2; // '\r' is the end-of-line character
+	ignore['.'] = 2;
 	ignore['/'] = 2;
 	ignore[','] = 1;
 	for (int i = 0; i < str.length(); i++)
