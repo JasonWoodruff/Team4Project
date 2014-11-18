@@ -10,8 +10,8 @@ Bryson Li		-	I/O
 James Juchau	-	Hashed Table
 Kevin Chen		-	Binary Search Tree
 
-@version	1.1
-@since		11/15/2014
+@version	1.15
+@since		11/18/2014
 */
 
 #include <iostream>
@@ -118,65 +118,42 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
 {
 	switch (choice)
 	{
-	case 1:
-	{
-		readDogsInFromFile(/*dogIdTree*/);
-		break;
-	}
-	case 2:
-	{
-		addDog();
-		break;
-	}
-	case 3:
-	{
-		removeDog();
-		break;
-	}
-	case 4:
-	{
-		displayDogInfoByIdSearch();
-		break;
-	}
-	case 5:
-	{
-		updateDog();
-		break;
-	}
-	case 6:
-	{
-		displayDogsInHashSequence();
-		break;
-	}
-	case 7:
-	{
-		displayDogsInKeySequence();
-		break;
-	}
-	case 8:
-	{
-		displayIndentedTree();
-		break;
-	}
-	case 9:
-	{
-		displayEfficiencyReport();
-		break;
-	}
-	case 10:
-	{
-		/*dogIdTree.clear();*/
-		break;
-	}
-	case 11:
-	{
-		updateDogFile(/*dogIdTree*/);
-	}
-	case 12:
-	{
-		cout << "Thank you, now exiting..." << endl;
-		break;
-	}
+		case 1:
+			readDogsInFromFile(/*dogIdTree*/);
+			break;
+		case 2:
+			addDog();
+			break;
+		case 3:
+			removeDog();
+			break;
+		case 4:
+			displayDogInfoByIdSearch();
+			break;
+		case 5:
+			updateDog();
+			break;
+		case 6:
+			displayDogsInHashSequence();
+			break;
+		case 7:
+			displayDogsInKeySequence();
+			break;
+		case 8:
+			displayIndentedTree();
+			break;
+		case 9:
+			displayEfficiencyReport();
+			break;
+		case 10:
+			/*dogIdTree.clear();*/
+			break;
+		case 11:
+			updateDogFile(/*dogIdTree*/);
+			break;
+		case 12:
+			cout << "Thank you, now exiting..." << endl;
+			break;
 	}
 	return true;
 }
@@ -268,7 +245,7 @@ int addToDog(string str)
 bool updateDogFile(/*BinaryTree& dogIdTree*/)
 {
 	ofstream out;
-	out.open(FILENAME.c_str());
+	//out.open(FILENAME.c_str());
 	// will update dogs hre
 	
 	out.close();
@@ -277,42 +254,50 @@ bool updateDogFile(/*BinaryTree& dogIdTree*/)
 
 bool addDog()
 {
+	cout << "Adding dog." << endl;
 	return true;
 }
 
 bool removeDog()
 {
+	cout << "Removing dog." << endl;
 	return true;
 }
 
 bool displayDogInfoByIdSearch()
 {
+	cout << "Displaying dog after ID search." << endl;
 	return true;
 }
 
 bool displayDogsInHashSequence()
 {
+	cout << "Displaying dogs in hash sequence." << endl;
 	return true;
 }
 
 bool displayDogsInKeySequence()
 {
+	cout << "Displaying dogs in key sequence." << endl;
 	return true;
 }
 
 bool displayIndentedTree()
 {
+	cout << "Displaying dogs in indented." << endl;
 	return true;
 }
 
 bool displayEfficiencyReport()
 {
+	cout << "Displaying efficiency report." << endl;
 	return true;
 }
 
 //Team Choice 1
 bool updateDog()
 {
+	cout << "Updating dog." << endl;
 	return true;
 }
 
