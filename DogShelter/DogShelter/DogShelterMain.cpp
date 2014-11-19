@@ -235,6 +235,17 @@ int addToDog(string str)
 	// later will override ostream of Dog to print out this part;
 	string partsOfDog[] = { "ID", "Name", "Gender", "Age", "Breed", "Description", "extra?" };
 	cout << "Finished reading in dog with " << endl;
+	
+	/*
+	
+	
+	
+	THIS IS WHERE YOU CAN ADD DOGS
+	
+	
+	
+	
+	*/
 	for (int i = 0; i < 6; i++)
 		cout << partsOfDog[i] << ": " << segment[i] << endl;
 	cout << endl;
