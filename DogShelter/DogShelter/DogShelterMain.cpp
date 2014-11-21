@@ -216,23 +216,20 @@ int addToDog(string str)
 	int segmentNo = 0;
 	string temp = "";
 	string segment[7];
-	//Dog aDog; //not working for some reason because no default constructor implemented
+	
 	map<char, int> ignore; //0 = ignore character, 1 = end of segment, 2 stop reading
 	ignore['<'] = 0;
 	ignore['>'] = 2;
-	//ignore['\r'] = 2; // '\r' is the end-of-line character
-	ignore['.'] = 2; // '\r' is the end-of-line character
+	ignore['.'] = 2;
 	ignore['/'] = 2;
 	ignore[','] = 1;
 	for (int i = 0; i < str.length(); i++)
 	{
 		char ch = str.at(i);
 
-		//cout << "ignore count is" << ignore.count(ch) << endl;
 		if (ignore.count(ch) < 1)
 		{
 			temp += ch;
-			//cout << "adding " << ch << "	";
 		} //adds char to temporary string for that particular segment
 		else
 		{
@@ -258,7 +255,7 @@ int addToDog(string str)
 	//Dog aDog();
 	// THIS PART
 	// IS WHERE YOU
-	// ADD THE DOG TO THE LIST/ BST
+	// ADD THE DOG TO THE LIST/ BST/ etc.
 
 	string partsOfDog[] = { "ID", "Name", "Gender", "Age", "Breed", "Description", "extra?" };
 	cout << "Finished reading in dog with " << endl;
