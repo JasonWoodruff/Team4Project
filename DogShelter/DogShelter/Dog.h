@@ -18,65 +18,32 @@ private:
 	
 protected:
 	//generates a Dog ID based on a static variable which counts the instances of Dogs
-	string generateID()
-	{
-		int tempID = keyNumGenerator++;             //next number available for id assignment
-		string pad = "";                            //a cushion of filler 0s
-		stringstream s;
-
-		if (tempID < 10)                           //create the filler 0s if needed
-			pad = "00";
-		else if (tempID < 100)
-			pad = "0";
-
-		s << "DOG" << pad << tempID;                //concatenate all parts of id
-
-		return s.str();
-	}
+	string generateID();
+	
 
 public:
 	static int keyNumGenerator = 1;     //increments when each new instance of Dog is created
 	
-	Dog()
-	{  ID = generateID();  }
+	/*Default constructor creates a dogID only*/
+	Dog();
 	
-	Dog(string strID, string strN, string strGen, string strAge, string strB, string strD) :
-		ID(strID), name(strN), gender(strGen), age(strAge), breed(strB), description(strD)
-	{}
+	/**Constructor assigns all fields*/
+	Dog(string strID, string strN, string strGen, string strAge, string strB, string strD);
 	
-	string getID() const
-	{  return ID;  }
+	/**Accessor methods*/
+	string getID() const;
+	string getName() const;
+	string getAge() const;
+	string getGender() const;
+	string getBreed() const;
+	string getDescription() const;
 	
-	string getName() const
-	{  return name;  }
-	
-	string getAge() const
-	{  return age;  }
-	
-	string getGender() const
-	{  return gender;  }
-
-	string getBreed() const
-	{  return breed;  }
-	
-	string getDescription() const
-	{  return description;  }
-	
-	void setID(string key)
-	{  ID = key;  }
-	
-	void setName(string n)
-	{  name = n;  }
-	
-	void setAge(string a)
-	{  age = a;  }
-	
-	void setBreed(string type)
-	{  breed = type;  }
-	
-	void setDescription(string desc)
-	{  description = desc;  }
-
+	/**Mutator methods*/
+	void setID(string key);
+	void setName(string n);
+	void setAge(string a);
+	void setBreed(string type);
+	void setDescription(string desc);
 };
 
 #endif
