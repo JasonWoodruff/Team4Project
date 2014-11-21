@@ -2,17 +2,13 @@
 #define DOG_H
 #include <string>
 #include <iostream>
-#include <cstdlib>
-#include <cctype>
+#include <sstream>
 
 using namespace std;
-
-static int keyNumGenerator = 1;     //increments when each new instance of Dog is created
 
 class Dog
 {
 private:
-	
 	string ID;                          //format DOG001, DOG002
 	string name;
 	string age;
@@ -21,21 +17,26 @@ private:
 	string description;
 	
 protected:
+	//generates a Dog ID based on a static variable which counts the instances of Dogs
 	string generateID()
 	{
-		int tempID = keyNumGenerator++;
-		string IDstr = tempID + "";
-		//string IDstr = itoa(tempID.c_str());//  itoa can't be used this way
-		// char *  itoa ( int value, char * str, int base );
-		
-		//creates a "padding" of zeros for the id
-		while(IDstr.length() < 4)
-			IDstr += "0";
-			
-		ID = "DOG" + IDstr;
+		int tempID = keyNumGenerator++;             //next number available for id assignment
+		string pad = "";                            //a cushion of filler 0s
+		stringstream s;
+
+		if (tempID < 10)                           //create the filler 0s if needed
+			pad = "00";
+		else if (tempID < 100)
+			pad = "0";
+
+		s << "DOG" << pad << tempID;                //concatenate all parts of id
+
+		return s.str();
 	}
 
 public:
+	static int keyNumGenerator = 1;     //increments when each new instance of Dog is created
+	
 	Dog()
 	{  ID = generateID();  }
 	
@@ -43,24 +44,22 @@ public:
 		ID(strID), name(strN), gender(strGen), age(strAge), breed(strB), description(strD)
 	{}
 	
-	string getID()
+	string getID() const
 	{  return ID;  }
 	
-	string getName()
+	string getName() const
 	{  return name;  }
 	
-	string getAge()
+	string getAge() const
 	{  return age;  }
 	
-	string getGender()
-	{
-		return gender;
-	}
+	string getGender() const
+	{  return gender;  }
 
-	string getBreed()
+	string getBreed() const
 	{  return breed;  }
 	
-	string getDescription()
+	string getDescription() const
 	{  return description;  }
 	
 	void setID(string key)
