@@ -3,17 +3,20 @@
 #include <string>
 #include <iostream>
 #include <cstdlib>
+#include <cctype>
 
 using namespace std;
+
+static int keyNumGenerator = 1;     //increments when each new instance of Dog is created
 
 class Dog
 {
 private:
-	static int keyNumGenerator = 1;     //increments when each new instance of Dog is created
 	
 	string ID;                          //format DOG001, DOG002
 	string name;
 	string age;
+	string gender;
 	string breed;
 	string description;
 	
@@ -21,7 +24,9 @@ protected:
 	string generateID()
 	{
 		int tempID = keyNumGenerator++;
-		string IDstr = itoa(tempID);
+		string IDstr = tempID + "";
+		//string IDstr = itoa(tempID.c_str());//  itoa can't be used this way
+		// char *  itoa ( int value, char * str, int base );
 		
 		//creates a "padding" of zeros for the id
 		while(IDstr.length() < 4)
@@ -34,10 +39,11 @@ public:
 	Dog()
 	{  ID = generateID();  }
 	
-	Dog(string strID, string strN, string strAge, string strB, string strD):
-		ID(strID), name(strN), age(strAge), breed(strB), description(strD)
+	Dog(string strID, string strN, string strGen, string strAge, string strB, string strD) :
+		ID(strID), name(strN), gender(strGen), age(strAge), breed(strB), description(strD)
+	{}
 	
-	string getID();
+	string getID()
 	{  return ID;  }
 	
 	string getName()
@@ -46,6 +52,11 @@ public:
 	string getAge()
 	{  return age;  }
 	
+	string getGender()
+	{
+		return gender;
+	}
+
 	string getBreed()
 	{  return breed;  }
 	
