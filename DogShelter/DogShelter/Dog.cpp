@@ -9,7 +9,9 @@ using namespace std;
 static int keyNumGenerator = 1; //increments when each new instance of Dog is created
 
 Dog::Dog()
-{ ID = generateID(); }
+{ 
+	ID = generateID();
+ }
 
 Dog::Dog(string strID, string strN, string strGen, string strAge, string strB, string strD) :
 ID(strID), name(strN), gender(strGen), age(strAge), breed(strB), description(strD)

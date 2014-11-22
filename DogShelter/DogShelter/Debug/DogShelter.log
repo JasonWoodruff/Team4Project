@@ -1,0 +1,15 @@
+﻿Build started 11/22/2014 1:58:49 PM.
+     1>Project "C:\Users\Isaac\Documents\GitHub\team\Team4Project\DogShelter\DogShelter\DogShelter.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt DogShelterMain.cpp
+         DogShelterMain.cpp
+     1>c:\users\isaac\documents\github\team\team4project\dogshelter\dogshelter\dogsheltermain.cpp(231): warning C4018: '<' : signed/unsigned mismatch
+       Link:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Isaac\Documents\GitHub\team\Team4Project\DogShelter\Debug\DogShelter.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Isaac\Documents\GitHub\team\Team4Project\DogShelter\Debug\DogShelter.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Isaac\Documents\GitHub\team\Team4Project\DogShelter\Debug\DogShelter.lib" /MACHINE:X86 Debug\Dog.obj
+         Debug\DogShelterMain.obj
+         DogShelter.vcxproj -> C:\Users\Isaac\Documents\GitHub\team\Team4Project\DogShelter\Debug\DogShelter.exe
+     1>Done Building Project "C:\Users\Isaac\Documents\GitHub\team\Team4Project\DogShelter\DogShelter\DogShelter.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.81

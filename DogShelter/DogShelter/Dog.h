@@ -22,8 +22,6 @@ protected:
 	
 
 public:
-	static int keyNumGenerator = 1;     //increments when each new instance of Dog is created
-	
 	/*Default constructor creates a dogID only*/
 	Dog();
 	
@@ -44,6 +42,7 @@ public:
 	void setAge(string a);
 	void setBreed(string type);
 	void setDescription(string desc);
+
 };
 
 #endif

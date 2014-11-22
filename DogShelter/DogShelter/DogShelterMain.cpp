@@ -24,7 +24,7 @@ Kevin Chen		-	Binary Search Tree
 using namespace std;
 
 bool readDogsInFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
-int addToDog(string str); // will return a Dog
+Dog addToDog(string str); // will return a Dog
 bool updateDogFile(/*BinaryTree& dogIdTree*/);			//probably want to change this later to take arguments
 
 bool mainMenu();					//display the main menu
@@ -119,65 +119,66 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
 {
 	switch (choice)
 	{
-	case 1:
-	{
-		readDogsInFromFile(/*dogIdTree*/);
-		break;
-	}
-	case 2:
-	{
-		addDog();
-		break;
-	}
-	case 3:
-	{
-		removeDog();
-		break;
-	}
-	case 4:
-	{
-		displayDogInfoByIdSearch();
-		break;
-	}
-	case 5:
-	{
-		updateDog();
-		break;
-	}
-	case 6:
-	{
-		displayDogsInHashSequence();
-		break;
-	}
-	case 7:
-	{
-		displayDogsInKeySequence();
-		break;
-	}
-	case 8:
-	{
-		displayIndentedTree();
-		break;
-	}
-	case 9:
-	{
-		displayEfficiencyReport();
-		break;
-	}
-	case 10:
-	{
-		/*dogIdTree.clear();*/
-		break;
-	}
-	case 11:
-	{
-		updateDogFile(/*dogIdTree*/);
-	}
-	case 12:
-	{
-		cout << "Thank you, now exiting..." << endl;
-		break;
-	}
+		case 1:
+		{
+			readDogsInFromFile(/*dogIdTree*/);
+			break;
+		}
+		case 2:
+		{
+			addDog();
+			break;
+		}
+		case 3:
+		{
+			removeDog();
+			break;
+		}
+		case 4:
+		{
+			displayDogInfoByIdSearch();
+			break;
+		}
+		case 5:
+		{
+			updateDog();
+			break;
+		}
+		case 6:
+		{
+			displayDogsInHashSequence();
+			break;
+		}
+		case 7:
+		{
+			displayDogsInKeySequence();
+			break;
+		}
+		case 8:
+		{
+			displayIndentedTree();
+			break;
+		}
+		case 9:
+		{
+			displayEfficiencyReport();
+			break;
+		}
+		case 10:
+		{
+			/*dogIdTree.clear();*/
+			break;
+		}
+		case 11:
+		{
+			updateDogFile(/*dogIdTree*/);
+			break;
+		}
+		case 12:
+		{
+			cout << "Thank you, now exiting..." << endl << endl;
+			break;
+		}
 	}
 	return true;
 }
@@ -192,9 +193,11 @@ bool readDogsInFromFile(/*BinaryTree& dogIdTree*/)
 	while (getline(infile, temp))
 	{
 		//Dog(int a, string strID, string strN, string strB, string strS, string strD);
-		// addDog(Dog());
 		cout << temp << endl;
-		addToDog(temp);
+		Dog currentDog = addToDog(temp);
+		/*
+			This is where you will add the dogs
+		*/
 
 	}
 	infile.close();
@@ -205,18 +208,20 @@ bool readDogsInFromFile(/*BinaryTree& dogIdTree*/)
 addToDog(string str)
 Precondition: A string containing the data to be stored within the Dog class
 Postcondition: Creates a new object of class Dog and then return it.
-(this does not work right now because Dog.h has to be implemented)
 
 Notes: temporary not meant for linked list
 This code was written by Sam Song and then adapted for linked lists/ binary search tree
+
+Returns a Dog object from the string representation
+DOGID, dog name, dog gender, dog age, dog breed, dog description. <-- period at end is important
 */
 
-int addToDog(string str)
+Dog addToDog(string str)
 {
 	int segmentNo = 0;
 	string temp = "";
 	string segment[7];
-	
+
 	map<char, int> ignore; //0 = ignore character, 1 = end of segment, 2 stop reading
 	ignore['<'] = 0;
 	ignore['>'] = 2;
@@ -241,28 +246,25 @@ int addToDog(string str)
 			case 1:	//moves onto next segment.
 				segment[segmentNo] = temp;
 				segmentNo++;
-//				cout << "Segment has been successfully added." << endl;
+				//				cout << "Segment has been successfully added." << endl;
 				temp = ""; //empties temp
 				//aDog.addData(temp); 
 				break;
 			case 2:
-//				cout << "Segment has been successfully added." << endl;
+				//				cout << "Segment has been successfully added." << endl;
 				segment[segmentNo] = temp;
 			}
 		}
 	}
 	Dog aDog(segment[0], segment[1], segment[2], segment[3], segment[4], segment[5]);
-	//Dog aDog();
-	// THIS PART
-	// IS WHERE YOU
-	// ADD THE DOG TO THE LIST/ BST/ etc.
+	return aDog;
 
-	string partsOfDog[] = { "ID", "Name", "Gender", "Age", "Breed", "Description", "extra?" };
+	/*string partsOfDog[] = { "ID", "Name", "Gender", "Age", "Breed", "Description", "extra?" };
 	cout << "Finished reading in dog with " << endl;
 	for (int i = 0; i < 6; i++)
 		cout << partsOfDog[i] << ": " << segment[i] << endl;
 	cout << endl;
-	return 0;
+	return 0;*/
 }
 
 bool updateDogFile(/*BinaryTree& dogIdTree*/)
@@ -270,7 +272,7 @@ bool updateDogFile(/*BinaryTree& dogIdTree*/)
 	ofstream out;
 	//out.open(FILENAME.c_str());
 	// will update dogs hre
-	
+
 	//out.close();
 	return true;
 }
