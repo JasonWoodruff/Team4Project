@@ -289,6 +289,13 @@ bool removeDog()
 
 bool displayDogInfoByIdSearch()
 {
+	string input;
+	cout << "Enter the ID of the Dog to search for.\nUse the format \"DOG####\" -> ";
+	cin >> input;
+	// call the search function of the BST
+	// Display the Dog (override the ostream? <<)
+	// write a function to verify that ID is entered in correct format?
+
 	return true;
 }
 
@@ -299,11 +306,13 @@ bool displayDogsInHashSequence()
 
 bool displayDogsInKeySequence()
 {
+	// call the BST in-order traversal
 	return true;
 }
 
 bool displayIndentedTree()
 {
+	// call the display tree function (avl tree)?
 	return true;
 }
 
