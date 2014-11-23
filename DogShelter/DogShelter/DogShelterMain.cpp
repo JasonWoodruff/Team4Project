@@ -1,4 +1,3 @@
-
 /*
 CIS22C Team 4 Project:	Dog Shelter Management Program
 
@@ -67,7 +66,7 @@ int main()
 
 	/*BinaryTree dogIdTree;*/
 
-	while (choice != 12)
+	while (choice != 13)
 	{
 		mainMenu();
 		choice = getMainMenuChoice();
@@ -82,17 +81,18 @@ bool mainMenu()
 {
 	cout << "-----------------Main Menu-----------------" << endl << endl;
 	cout << "1  - Create the search tree" << endl;
-	cout << "2  - Add a dog" << endl;
-	cout << "3  - Remove a dog" << endl;
-	cout << "4  - Display dog attributes" << endl;
-	cout << "5  - Update dog attributes" << endl;
-	cout << "6  - Display dogs in hash sequence" << endl;
-	cout << "7  - Display dogs in key sequence" << endl;
-	cout << "8  - Display indented search tree" << endl;
-	cout << "9  - Display efficiency report" << endl;
-	cout << "10 - Clear the search tree" << endl;
-	cout << "11 - Update the file" << endl;
-	cout << "12 - Quit" << endl << endl;
+	cout << "2  - Create the hash table" << endl;
+	cout << "3  - Add a dog" << endl;
+	cout << "4  - Remove a dog" << endl;
+	cout << "5  - Display dog attributes" << endl;
+	cout << "6  - Update dog attributes" << endl;
+	cout << "7  - Display dogs in hash sequence" << endl;
+	cout << "8  - Display dogs in key sequence" << endl;
+	cout << "9  - Display indented search tree" << endl;
+	cout << "10 - Display efficiency report" << endl;
+	cout << "11 - Clear the search tree" << endl;
+	cout << "12 - Update the file" << endl;
+	cout << "13 - Quit" << endl << endl;
 	cout << "Enter your choice here: ";
 
 	return true;
@@ -106,7 +106,7 @@ int getMainMenuChoice()
 	cin >> input;
 	choice = atoi(input.c_str());
 
-	while (choice < 1 || choice > 12)
+	while (choice < 1 || choice > 13)
 	{
 		cout << "Invalid menu choice, try again: ";
 		cin >> input;
@@ -122,60 +122,65 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
 	{
 		case 1:
 		{
-			readDogsInFromFile(/*dogIdTree*/);
+			readDogsToTreeFromFile(/*dogIdTree*/);
 			break;
 		}
 		case 2:
 		{
-			addDog();
+			readDogsToHashFromFile(/**/);
 			break;
 		}
 		case 3:
 		{
-			removeDog();
+			addDog();
 			break;
 		}
 		case 4:
 		{
-			displayDogInfoByIdSearch();
+			removeDog();
 			break;
 		}
 		case 5:
 		{
-			updateDog();
+			displayDogInfoByIdSearch();
 			break;
 		}
 		case 6:
 		{
-			displayDogsInHashSequence();
+			updateDog();
 			break;
 		}
 		case 7:
 		{
-			displayDogsInKeySequence();
+			displayDogsInHashSequence();
 			break;
 		}
 		case 8:
 		{
-			displayIndentedTree();
+			displayDogsInKeySequence();
 			break;
 		}
 		case 9:
 		{
-			displayEfficiencyReport();
+			displayIndentedTree();
 			break;
 		}
 		case 10:
 		{
-			/*dogIdTree.clear();*/
+			displayEfficiencyReport();
 			break;
 		}
 		case 11:
 		{
-			updateDogFile(/*dogIdTree*/);
+			/*dogIdTree.clear();*/
 			break;
 		}
 		case 12:
+		{
+			updateDogFile(/*dogIdTree*/);
+			break;
+		}
+		case 13:
 		{
 			cout << "Thank you, now exiting..." << endl << endl;
 			break;
@@ -201,6 +206,30 @@ bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 		*/
 
 	}
+	cout << endl;
+	infile.close();
+	return true;
+}
+
+//copied readDogsToTreeFromFile for now
+bool readDogsToHashFromFile(/**/)
+{
+	ifstream infile;
+	infile.open(FILENAME.c_str());
+	// will read in dogs hre
+	string temp;
+	cout << "File contains: " << endl;
+	while (getline(infile, temp))
+	{
+		//Dog(int a, string strID, string strN, string strB, string strS, string strD);
+		cout << temp << endl;
+		Dog currentDog = addToDog(temp);
+		/*
+		This is where you will add the dogs
+		*/
+
+	}
+	cout << endl;
 	infile.close();
 	return true;
 }
@@ -291,12 +320,12 @@ bool removeDog()
 bool displayDogInfoByIdSearch()
 {
 	string input;
-	cout << "Enter the ID of the Dog to search for.\nUse the format \"DOG####\" -> ";
+	cout << "Enter the ID of the Dog to search for.\nUse the format \"DOG###\" -> ";
 	cin >> input;
 	// call the search function of the BST
 	// Display the Dog (override the ostream? <<)
 	// write a function to verify that ID is entered in correct format?
-
+	cout << endl;
 	return true;
 }
 
@@ -325,6 +354,13 @@ bool displayEfficiencyReport()
 //Team Choice 1
 bool updateDog()
 {
+	string input;
+	cout << "Enter the ID of the Dog to search for.\nUse the format \"DOG###\" -> ";
+	cin >> input;
+	// call the search function of the BST
+	// Display the Dog (override the ostream? <<)
+	// write a function to verify that ID is entered in correct format?
+	cout << endl;
 	return true;
 }
 
