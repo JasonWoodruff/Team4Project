@@ -20,7 +20,6 @@ protected:
 	//generates a Dog ID based on a static variable which counts the instances of Dogs
 	string generateID();
 	
-
 public:
 	/*Default constructor creates a dogID only*/
 	Dog();

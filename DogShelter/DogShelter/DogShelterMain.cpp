@@ -23,7 +23,8 @@ Kevin Chen		-	Binary Search Tree
 #include "Dog.h"
 using namespace std;
 
-bool readDogsInFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
+bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
+bool readDogsToHashFromFile(/**/);							//open the input file and read the dogs into a hash
 Dog addToDog(string str); // will return a Dog
 bool updateDogFile(/*BinaryTree& dogIdTree*/);			//probably want to change this later to take arguments
 
@@ -183,7 +184,7 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
 	return true;
 }
 
-bool readDogsInFromFile(/*BinaryTree& dogIdTree*/)
+bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 {
 	ifstream infile;
 	infile.open(FILENAME.c_str());
