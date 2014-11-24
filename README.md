@@ -5,12 +5,15 @@ You can also create folders by using **folderName/fileName.cpp** (no extension =
 
 Be sure to include documentation!
 Example:
+```javascript
 /*
 	functionName(a,b)
 	@Precondition: a must be intialized to something, etc...
 	@Postcondition: sometehing is changed
 	@return
 */
+```
+
 
 Remember the following Git commands:
 1. **git pull**  downloads changes
