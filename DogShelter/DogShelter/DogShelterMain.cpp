@@ -286,7 +286,7 @@ Dog* addToDog(string str)
 			}
 		}
 	}
-	Dog aDog = new Dog(segment[0], segment[1], segment[2], segment[3], segment[4], segment[5]);
+	Dog* aDog = new Dog(segment[0], segment[1], segment[2], segment[3], segment[4], segment[5]);
 	return aDog;
 
 	/*string partsOfDog[] = { "ID", "Name", "Gender", "Age", "Breed", "Description", "extra?" };
