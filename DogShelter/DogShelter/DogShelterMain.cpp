@@ -24,7 +24,7 @@ using namespace std;
 
 bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
 bool readDogsToHashFromFile(/**/);							//open the input file and read the dogs into a hash
-Dog addToDog(string str); // will return a Dog
+Dog* addToDog(string str); // will return a Dog
 bool updateDogFile(/*BinaryTree& dogIdTree*/);			//probably want to change this later to take arguments
 
 bool mainMenu();					//display the main menu
@@ -200,7 +200,7 @@ bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 	{
 		//Dog(int a, string strID, string strN, string strB, string strS, string strD);
 		cout << temp << endl;
-		Dog currentDog = addToDog(temp);
+		Dog* currentDog = addToDog(temp);
 		/*
 			This is where you will add the dogs
 		*/
@@ -223,7 +223,7 @@ bool readDogsToHashFromFile(/**/)
 	{
 		//Dog(int a, string strID, string strN, string strB, string strS, string strD);
 		cout << temp << endl;
-		Dog currentDog = addToDog(temp);
+		Dog* currentDog = addToDog(temp);
 		/*
 		This is where you will add the dogs
 		*/
@@ -246,7 +246,7 @@ Returns a Dog object from the string representation
 DOGID, dog name, dog gender, dog age, dog breed, dog description. <-- period at end is important
 */
 
-Dog addToDog(string str)
+Dog* addToDog(string str)
 {
 	int segmentNo = 0;
 	string temp = "";
@@ -286,7 +286,7 @@ Dog addToDog(string str)
 			}
 		}
 	}
-	Dog aDog(segment[0], segment[1], segment[2], segment[3], segment[4], segment[5]);
+	Dog aDog = new Dog(segment[0], segment[1], segment[2], segment[3], segment[4], segment[5]);
 	return aDog;
 
 	/*string partsOfDog[] = { "ID", "Name", "Gender", "Age", "Breed", "Description", "extra?" };
