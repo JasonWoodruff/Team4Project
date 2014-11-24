@@ -1,7 +1,8 @@
 Team 4 Project for CIS22C
 ============
 Hi everyone,
-You can also create folders by using **folderName/fileName.cpp** (no extension = folder)
+- You can also create folders by using **folderName/fileName.cpp** (no extension = folder)
+- Please do not re-write the read input from file function. Use the already written function and expand on it!!
 
 Be sure to include documentation!
 Example:
