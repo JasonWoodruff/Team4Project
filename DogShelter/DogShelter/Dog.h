@@ -47,7 +47,7 @@ public:
 	/**Print out the Dog's info*/
 	string toString();
 	
-	/* Override ostream */
+	/* Override ostream - for when saving to file*/
 	friend ostream& operator<<(ostream& os, const Dog& dt);
 };
 
