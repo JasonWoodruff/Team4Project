@@ -1,6 +1,11 @@
-﻿Build started 11/24/2014 8:34:58 PM.
+﻿Build started 11/25/2014 10:59:20 AM.
      1>Project "C:\Users\James Juchau\Source\Repos\Team4Project\DogShelter\DogShelter\DogShelter.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt DogShelterMain.cpp
+         DogShelterMain.cpp
+     1>c:\users\james juchau\source\repos\team4project\dogshelter\dogshelter\dogsheltermain.cpp(241): warning C4101: 'walker' : unreferenced local variable
+     1>c:\users\james juchau\source\repos\team4project\dogshelter\dogshelter\dogsheltermain.cpp(297): warning C4018: '<' : signed/unsigned mismatch
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\James Juchau\Source\Repos\Team4Project\DogShelter\DogShelter\Debug\DogShelter.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\James Juchau\Source\Repos\Team4Project\DogShelter\DogShelter\Debug\DogShelter.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\James Juchau\Source\Repos\Team4Project\DogShelter\DogShelter\Debug\DogShelter.lib" /MACHINE:X86 Debug\Dog.obj
          Debug\DogShelterMain.obj
          DogShelter.vcxproj -> C:\Users\James Juchau\Source\Repos\Team4Project\DogShelter\DogShelter\Debug\DogShelter.exe
@@ -8,4 +13,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.84
+Time Elapsed 00:00:00.76

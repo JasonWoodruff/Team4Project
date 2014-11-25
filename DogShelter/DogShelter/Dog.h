@@ -40,6 +40,7 @@ public:
 	void setID(string key);
 	void setName(string n);
 	void setAge(string a);
+	void setGender(string a);
 	void setBreed(string type);
 	void setDescription(string desc);
 

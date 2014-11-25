@@ -18,13 +18,19 @@ private:
 	as an int. I don't know if this string belongs, but I'll leave it there until I know for sure.*/
 	Dog dog; //the Dog object associated with the dog id
 	LinkedHashEntry *next;
+
 public:
 	LinkedHashEntry(Dog entry)
 	{
-		this->hashVal = hashID(entry.getID()); //hashes the input Dog's ID string; creates an int that is just the last two characters in the dog's ID
+		this->hashVal = hashID(entry.getID()); //hashes the input Dog's ID string into just the last two ints
 		this->key = entry.getID();
 		this->dog = entry;
 		this->next = nullptr;
+	}
+
+	int gethashVal()
+	{
+		return hashVal;
 	}
 
 	string getKey()

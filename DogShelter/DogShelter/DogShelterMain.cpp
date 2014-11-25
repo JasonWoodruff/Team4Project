@@ -20,10 +20,12 @@ Kevin Chen		-	Binary Search Tree
 #include <vector>//originally included by Sam Song
 #include <map>//originally included by Sam Song
 #include "Dog.h"
+#include "LinkedHashEntry.h"
 using namespace std;
 
 bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
 bool readDogsToHashFromFile(/**/);							//open the input file and read the dogs into a hash
+	Dog assembleHashList(LinkedHashEntry&, fstream&);					//used within readDogsToHash...() recursively to add all dogs to the list
 Dog* addToDog(string str); // will return a Dog
 bool updateDogFile(/*BinaryTree& dogIdTree*/);			//probably want to change this later to take arguments
 
@@ -214,25 +216,59 @@ bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 //copied readDogsToTreeFromFile for now
 bool readDogsToHashFromFile(/**/)
 {
-	ifstream infile;
-	infile.open(FILENAME.c_str());
+	fstream infile;
+	infile.open("dog.txt");
 	// will read in dogs hre
-	string temp;
-	cout << "File contains: " << endl;
-	while (getline(infile, temp))
-	{
-		//Dog(int a, string strID, string strN, string strB, string strS, string strD);
-		cout << temp << endl;
-		Dog* currentDog = addToDog(temp);
-		/*
-		This is where you will add the dogs
-		*/
+	Dog newDog;
+	string reader;
 
-	}
-	cout << endl;
+		infile >> reader;
+		newDog.setID(reader);
+		infile >> reader;
+		newDog.setName(reader);
+		infile >> reader;
+		newDog.setGender(reader);
+		infile >> reader;
+		newDog.setAge(reader);
+		infile >> reader;
+		newDog.setBreed(reader);
+		infile >> reader;
+		newDog.setDescription(reader);
+		/*I included this because the constructor for a LinkedHashEntry object required a Dog object. NewDog becomes the first
+		dog on the list.*/
+
+		LinkedHashEntry hashedDogList(newDog);
+		LinkedHashEntry* walker;
+
+		while (!infile.eof())
+		{
+			assembleHashList(hashedDogList, infile);
+		}
+
 	infile.close();
 	return true;
 }
+
+Dog assembleHashList(LinkedHashEntry& hashedDogList, fstream& infile)
+{
+	Dog newDog; string reader;
+	infile >> reader;
+	newDog.setID(reader);
+	infile >> reader;
+	newDog.setName(reader);
+	infile >> reader;
+	newDog.setGender(reader);
+	infile >> reader;
+	newDog.setAge(reader);
+	infile >> reader;
+	newDog.setBreed(reader);
+	infile >> reader;
+	newDog.setDescription(reader);
+	
+
+	return newDog;
+}
+
 
 /*
 addToDog(string str)

@@ -51,6 +51,9 @@ void Dog::setName(string n)
 void Dog::setAge(string a)
 { age = a; }
 
+void Dog::setGender(string a)
+{gender = a;}
+
 void Dog::setBreed(string type)
 { breed = type; }
 
