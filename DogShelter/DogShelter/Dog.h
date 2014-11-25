@@ -48,7 +48,7 @@ public:
 	string toString();
 	
 	/* Override ostream */
-	friend ostream& operator<<(ostream& os, const Date& dt);
+	friend ostream& operator<<(ostream& os, const Dog& dt);
 };
 
 #endif
