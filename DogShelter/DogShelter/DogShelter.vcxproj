@@ -69,6 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dog.h" />
+    <ClInclude Include="HashMap.h" />
+    <ClInclude Include="LinkedHashEntry.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="dog.txt" />

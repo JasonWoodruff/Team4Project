@@ -8,8 +8,9 @@ using namespace std;
 
 class Dog
 {
-private:
-	string ID;                          //format DOG001, DOG002
+public: 
+	string ID;    //format DOG001, DOG002
+private:                         
 	string name;
 	string age;
 	string gender;
