@@ -10,13 +10,14 @@ Bryson Li		-	I/O
 James Juchau	-	Hashed Table
 Kevin Chen		-	Binary Search Tree
 
-@version	1.1
-@since		11/15/2014
+@version	1.5
+@since		11/25/2014
 */
 
 #include <iostream>
 #include <string>
 #include <fstream>
+/* 2 includes below not longer needed? */
 #include <vector>//originally included by Sam Song
 #include <map>//originally included by Sam Song
 #include "Dog.h"
@@ -196,6 +197,10 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/, HashMap& dogH
 	return true;
 }
 
+/* This function will be deleted later
+because it will be combined with the
+readDogsToHashFromFile function
+*/
 bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 {
 	ifstream infile;
@@ -218,7 +223,8 @@ bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 	return true;
 }
 
-/*JASON I changed the file a lot.  Reading from it will be much easier if we just comment delimit everything by comments and delimit the last entry by a newline*/
+/*JASON I changed the file a lot.  Reading from it will be much easier if
+we just comment delimit everything by comments and delimit the last entry by a newline*/
 bool readDogsToHashFromFile(HashMap& dogHash)
 {
 	fstream dogFile;
@@ -249,7 +255,10 @@ bool readDogsToHashFromFile(HashMap& dogHash)
 
 
 /*
-JASON - I don't think we need to use this.  Check out ReadDogsToHashFromFile() for a working example that is simpler
+JASON - I don't think we need to use this.  
+Check out ReadDogsToHashFromFile() for a working example that is simpler
+
+BRYSON - I agree.
 
 addToDog(string str)
 Precondition: A string containing the data to be stored within the Dog class
@@ -363,8 +372,14 @@ bool displayIndentedTree()
 	return true;
 }
 
+/*
+Load Factor
+Longest Linked List
+Average number of nodes in linked lists 8
+*/
 bool displayEfficiencyReport()
 {
+	
 	return true;
 }
 
