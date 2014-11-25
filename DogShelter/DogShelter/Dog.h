@@ -46,6 +46,9 @@ public:
 
 	/**Print out the Dog's info*/
 	string toString();
+	
+	/* Override ostream */
+	friend ostream& operator<<(ostream& os, const Date& dt);
 };
 
 #endif
