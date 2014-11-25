@@ -63,7 +63,9 @@ public:
 		int hashValue = 0;
 		char x = in[4], //takes the fifth letter in the string
 			y = in[5]; //takes the sixth letter in the string
-
+		/* Suggestion: to make this more efficient, think about the following:
+		(int)'0' == 48   all the way to (int)'9' == 57
+		Also #include<cctype> has a function isdigit(char) to check if a char is a # from '0' to '9'*/
 		if (x = '0'){ hashValue += 0; }
 		if (x = '1'){ hashValue += 10; }
 		if (x = '2'){ hashValue += 20; }
