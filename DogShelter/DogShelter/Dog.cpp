@@ -8,7 +8,7 @@ using namespace std;
 #include "Dog.h"
 
 static int keyNumGenerator = 1; //increments when each new instance of Dog is created
-queue<string> nextAvailable;
+static queue<string> nextAvailable;
 /*	We could use a data item here called NextAvailable that keeps track of freed up IDs.
 	When Dogs are removed, we want their ids to get used up again ASAP.  NextAvailable
 	could be a chain of linked nodes like a queue.
@@ -22,7 +22,9 @@ Dog::Dog()
 
 Dog::Dog(string strID, string strN, string strGen, string strAge, string strB, string strD) :
 ID(strID), name(strN), gender(strGen), age(strAge), breed(strB), description(strD)
-{}
+{
+	keyNumGenerator++; 
+}
 
 string Dog::getID() const
 { return ID; }
@@ -63,7 +65,7 @@ void Dog::setDescription(string desc)
 //I made a change to this function so it accounts for available ids that were previously deleted - Jason
 string Dog::generateID()
 {
-	if (nextAvailable.front().empty())
+	if (nextAvailable.empty())
 	{
 		int tempID = keyNumGenerator++; //next number available for id assignment
 		string pad = ""; //a cushion of filler 0s
@@ -72,6 +74,8 @@ string Dog::generateID()
 			pad = "00";
 		else if (tempID < 100)
 			pad = "0";
+		else if (tempID < 1000)
+			pad = "";
 		s << "DOG" << pad << tempID; //concatenate all parts of id
 		return s.str();
 	}
@@ -80,6 +84,12 @@ string Dog::generateID()
 		string newId = nextAvailable.front();
 		nextAvailable.pop();
 		return newId;
-	}
-		
+	}	
+}
+
+string Dog::toString()
+{
+	stringstream s;
+	s << ID << "\n" << name << "\n" << age << "\n" << gender << "\n" << breed << "\n" << description << "\n";
+	return s.str();
 }

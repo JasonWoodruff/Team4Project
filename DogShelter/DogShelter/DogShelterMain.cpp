@@ -20,23 +20,23 @@ Kevin Chen		-	Binary Search Tree
 #include <vector>//originally included by Sam Song
 #include <map>//originally included by Sam Song
 #include "Dog.h"
-#include "LinkedHashEntry.h"
+#include "HashMap.h" //was previously "LinkedHashEntry.h"
 using namespace std;
 
 bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
-bool readDogsToHashFromFile(/**/);							//open the input file and read the dogs into a hash
-	Dog assembleHashList(LinkedHashEntry&, fstream&);					//used within readDogsToHash...() recursively to add all dogs to the list
-Dog* addToDog(string str); // will return a Dog
+bool readDogsToHashFromFile(HashMap& dogHash);							//open the input file and read the dogs into a hash
+
+Dog* addToDog(string str); // will return a Dog, no longer need this in my opinion (JASON)
 bool updateDogFile(/*BinaryTree& dogIdTree*/);			//probably want to change this later to take arguments
 
 bool mainMenu();					//display the main menu
 int getMainMenuChoice();
-bool processMainMenuChoice(int choice/*, BinaryTree& dogIdTree*/);
+bool processMainMenuChoice(int choice/*, BinaryTree& dogIdTree*/, HashMap& dogHash);
 
 bool addDog();						//add a dog to the tree
 bool removeDog();					//delete a dog from the tree
 bool displayDogInfoByIdSearch();	//displays all of a dog's info if it's found with an id search
-bool displayDogsInHashSequence();	//display dogs in hash sequence
+bool displayDogsInHashSequence(HashMap& dogHash);	//display dogs in hash sequence
 bool displayDogsInKeySequence();	//display dogs in key sequence
 bool displayIndentedTree();			//print the indented tree
 bool displayEfficiencyReport();		//print an efficiency report
@@ -60,6 +60,9 @@ bool searchDogByGender();
 bool searchDogByAge();
 bool searchDogByBreed();
 
+void readToHashByFromFileTest(HashMap& dogHash);
+
+
 const string FILENAME = "dog.txt";
 
 int main()
@@ -67,12 +70,13 @@ int main()
 	int choice = 0;
 
 	/*BinaryTree dogIdTree;*/
+	HashMap dogHash;
 
 	while (choice != 13)
 	{
 		mainMenu();
 		choice = getMainMenuChoice();
-		processMainMenuChoice(choice /*, dogIdTree*/);
+		processMainMenuChoice(choice /*, dogIdTree*/ , dogHash);
 	}
 
 	system("pause");
@@ -107,6 +111,7 @@ int getMainMenuChoice()
 
 	cin >> input;
 	choice = atoi(input.c_str());
+	HashMap dogHash;
 
 	while (choice < 1 || choice > 13)
 	{
@@ -118,7 +123,7 @@ int getMainMenuChoice()
 	return choice;
 }
 
-bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
+bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/, HashMap& dogHash)
 {
 	switch (choice)
 	{
@@ -129,7 +134,7 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
 		}
 		case 2:
 		{
-			readDogsToHashFromFile(/**/);
+			readDogsToHashFromFile(dogHash);
 			break;
 		}
 		case 3:
@@ -154,7 +159,7 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/)
 		}
 		case 7:
 		{
-			displayDogsInHashSequence();
+			displayDogsInHashSequence(dogHash);
 			break;
 		}
 		case 8:
@@ -213,64 +218,39 @@ bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 	return true;
 }
 
-//copied readDogsToTreeFromFile for now
-bool readDogsToHashFromFile(/**/)
+/*JASON I changed the file a lot.  Reading from it will be much easier if we just comment delimit everything by comments and delimit the last entry by a newline*/
+bool readDogsToHashFromFile(HashMap& dogHash)
 {
-	fstream infile;
-	infile.open("dog.txt");
-	// will read in dogs hre
-	Dog newDog;
-	string reader;
+	fstream dogFile;
 
-		infile >> reader;
-		newDog.setID(reader);
-		infile >> reader;
-		newDog.setName(reader);
-		infile >> reader;
-		newDog.setGender(reader);
-		infile >> reader;
-		newDog.setAge(reader);
-		infile >> reader;
-		newDog.setBreed(reader);
-		infile >> reader;
-		newDog.setDescription(reader);
-		/*I included this because the constructor for a LinkedHashEntry object required a Dog object. NewDog becomes the first
-		dog on the list.*/
+	dogFile.open(FILENAME, fstream::in);
+	while (!dogFile.eof())
+	{
+		string tempId = "";
+		string tempName = "";
+		string tempAge = "";
+		string tempGender = "";
+		string tempBreed = "";
+		string tempDesc = "";
 
-		LinkedHashEntry hashedDogList(newDog);
-		LinkedHashEntry* walker;
+		getline(dogFile, tempId, ',');
+		getline(dogFile, tempName, ',');
+		getline(dogFile, tempAge, ',');
+		getline(dogFile, tempGender, ',');
+		getline(dogFile, tempBreed, ',');
+		getline(dogFile, tempDesc, '\n');
 
-		while (!infile.eof())
-		{
-			assembleHashList(hashedDogList, infile);
-		}
-
-	infile.close();
+		Dog* dog = new Dog(tempId, tempName, tempAge, tempGender, tempBreed, tempDesc);
+		dogHash.put(*dog);
+	}
+	dogFile.close();
 	return true;
-}
-
-Dog assembleHashList(LinkedHashEntry& hashedDogList, fstream& infile)
-{
-	Dog newDog; string reader;
-	infile >> reader;
-	newDog.setID(reader);
-	infile >> reader;
-	newDog.setName(reader);
-	infile >> reader;
-	newDog.setGender(reader);
-	infile >> reader;
-	newDog.setAge(reader);
-	infile >> reader;
-	newDog.setBreed(reader);
-	infile >> reader;
-	newDog.setDescription(reader);
-	
-
-	return newDog;
 }
 
 
 /*
+JASON - I don't think we need to use this.  Check out ReadDogsToHashFromFile() for a working example that is simpler
+
 addToDog(string str)
 Precondition: A string containing the data to be stored within the Dog class
 Postcondition: Creates a new object of class Dog and then return it.
@@ -365,8 +345,9 @@ bool displayDogInfoByIdSearch()
 	return true;
 }
 
-bool displayDogsInHashSequence()
+bool displayDogsInHashSequence(HashMap& dogHash)
 {
+	dogHash.display();
 	return true;
 }
 
@@ -452,4 +433,4 @@ bool searchDogByBreed()
 	return true;
 }
 
-//change
+

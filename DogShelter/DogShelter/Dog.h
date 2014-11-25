@@ -44,6 +44,8 @@ public:
 	void setBreed(string type);
 	void setDescription(string desc);
 
+	/**Print out the Dog's info*/
+	string toString();
 };
 
 #endif
