@@ -93,3 +93,9 @@ string Dog::toString()
 	s << ID << "\n" << name << "\n" << age << "\n" << gender << "\n" << breed << "\n" << description << "\n";
 	return s.str();
 }
+
+ostream& operator<<(ostream& os, const Dog& dt)
+{
+    os << ID << "," << name << "," << age << "," << gender << "," << breed << "," << description;
+    return os;
+}
