@@ -25,6 +25,11 @@ public:
 		for (int i = 0; i < TABLE_SIZE; i++)
 			table[i] = nullptr;
 	}
+
+	~HashMap()
+	{
+		clear();
+	}
 	
 	/*JASON The user would type something like "DOG003" which would get passed to get*/
 	Dog get(string key)
@@ -119,7 +124,7 @@ public:
 		}
 	}
 
-	~HashMap()
+	void clear()
 	{
 		for (int i = 0; i < TABLE_SIZE; i++)
 		{

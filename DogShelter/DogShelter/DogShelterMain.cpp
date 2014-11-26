@@ -20,23 +20,23 @@ Kevin Chen		-	Binary Search Tree
 #include <fstream>
 #include "Dog.h"
 #include "HashMap.h"
+#include "DogTree.h"
 using namespace std;
 
-bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
-bool readDogsToHashFromFile(HashMap& dogHash);							//open the input file and read the dogs into a hash
+bool readDogsFromFile(HashMap& dogHash, avlTree& dogTree);
+bool readDogsToTreeFromFile(avlTree& dogTree);		//open the input file and read the dogs into a tree
+bool readDogsToHashFromFile(HashMap& dogHash);		//open the input file and read the dogs into a hash
 
 bool updateDogFile(/*BinaryTree& dogIdTree*/);			//probably want to change this later to take arguments
 
 bool mainMenu();					//display the main menu
 int getMainMenuChoice();
-bool processMainMenuChoice(int choice/*, BinaryTree& dogIdTree*/, HashMap& dogHash);
+bool processMainMenuChoice(int choice, HashMap* dogHash, avlTree* dogTree);
 
-bool addDog();						//add a dog to the tree and hash
-bool removeDog();					//delete a dog from the tree and hash
+bool addDog(HashMap& dogHash, avlTree& dogTree);						//add a dog to the tree and hash
+bool removeDog(HashMap& dogHash, avlTree& dogTree);					//delete a dog from the tree and hash
 bool displayDogInfoByIdSearch(HashMap& dogHash);	//displays all of a dog's info if it's found with an id search
-bool displayDogsInHashSequence(HashMap& dogHash);	//display dogs in hash sequence
-bool displayDogsInKeySequence(/*BinaryTree& dogIdTree*/);	//display dogs in key sequence
-bool displayIndentedTree();			//print the indented tree
+
 bool displayEfficiencyReport();		//print an efficiency report
 
 //Team Choice 1
@@ -58,46 +58,48 @@ bool searchDogByGender();
 bool searchDogByAge();
 bool searchDogByBreed();
 
-void readToHashByFromFileTest(HashMap& dogHash);
-
-
 const string FILENAME = "dog.txt";
 
 int main()
 {
 	int choice = 0;
 
-	/*BinaryTree dogIdTree;*/
-	HashMap dogHash;
+	avlTree* dogTree = new avlTree();
+	HashMap* dogHash = new HashMap();
 
-	while (choice != 13)
+	while (choice != 12)
 	{
+		//Database was cleared, must recreate the data structures
+		if (choice == 10)
+		{
+			dogTree = new avlTree();
+			dogHash = new HashMap();
+		}
+
 		mainMenu();
 		choice = getMainMenuChoice();
-		processMainMenuChoice(choice /*, dogIdTree*/ , dogHash);
+		processMainMenuChoice(choice, dogHash, dogTree);
 	}
 
 	system("pause");
 	return 0;
 }
 
-//JASON: Menu choices 1 and 2 will be consolidated later to: Load the Database
 bool mainMenu()
 {
 	cout << "-----------------Main Menu-----------------" << endl << endl;
-	cout << "1  - Create the search tree" << endl;
-	cout << "2  - Create the hash table" << endl;
-	cout << "3  - Add a dog" << endl;
-	cout << "4  - Remove a dog" << endl;
-	cout << "5  - Display dog attributes" << endl;
-	cout << "6  - Update dog attributes" << endl;
-	cout << "7  - Display dogs in hash sequence" << endl;
-	cout << "8  - Display dogs in key sequence" << endl;
-	cout << "9  - Display indented search tree" << endl;
-	cout << "10 - Display efficiency report" << endl;
-	cout << "11 - Clear the search tree" << endl;
-	cout << "12 - Update the file" << endl;
-	cout << "13 - Quit" << endl << endl;
+	cout << "1  - Load the Database" << endl;
+	cout << "2  - Add a dog" << endl;
+	cout << "3  - Remove a dog" << endl;
+	cout << "4  - Display dog attributes" << endl;
+	cout << "5  - Update dog attributes" << endl;
+	cout << "6  - Display dogs in hash sequence" << endl;
+	cout << "7  - Display dogs in key sequence" << endl;
+	cout << "8  - Display indented search tree" << endl;
+	cout << "9  - Display efficiency report" << endl;
+	cout << "10 - Clear the Database" << endl;
+	cout << "11 - Update the file" << endl;
+	cout << "12 - Quit" << endl << endl;
 	cout << "Enter your choice here: ";
 
 	return true;
@@ -112,7 +114,7 @@ int getMainMenuChoice()
 	choice = atoi(input.c_str());
 	HashMap dogHash;
 
-	while (choice < 1 || choice > 13)
+	while (choice < 1 || choice > 12)
 	{
 		cout << "Invalid menu choice, try again: ";
 		cin >> input;
@@ -122,71 +124,68 @@ int getMainMenuChoice()
 	return choice;
 }
 
-bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/, HashMap& dogHash)
+bool processMainMenuChoice(int choice, HashMap* dogHash, avlTree* dogTree)
 {
 	switch (choice)
 	{
 		case 1:
 		{
-			readDogsToTreeFromFile(/*dogIdTree*/);
+			readDogsFromFile(*dogHash, *dogTree);
 			break;
 		}
 		case 2:
 		{
-			readDogsToHashFromFile(dogHash);
+			addDog(*dogHash, *dogTree);
 			break;
 		}
 		case 3:
 		{
-			addDog();
+			removeDog(*dogHash, *dogTree);
 			break;
 		}
 		case 4:
 		{
-			removeDog();
+			displayDogInfoByIdSearch(*dogHash);
 			break;
 		}
 		case 5:
 		{
-			displayDogInfoByIdSearch(dogHash);
+			updateDog();
 			break;
 		}
 		case 6:
 		{
-			updateDog();
+			dogHash->display();
 			break;
 		}
 		case 7:
 		{
-			displayDogsInHashSequence(dogHash);
+			dogTree->inorder();
 			break;
 		}
 		case 8:
 		{
-			displayDogsInKeySequence(); //will display dogs by Inorder Tree traversal
+			dogTree->display(1);
+			cout << endl << endl;
 			break;
 		}
 		case 9:
 		{
-			displayIndentedTree(); //call the Tree function that displays the tree
+			displayEfficiencyReport();
 			break;
 		}
 		case 10:
 		{
-			displayEfficiencyReport();
+			delete dogHash;
+			delete dogTree;
 			break;
 		}
 		case 11:
 		{
-			/*dogIdTree.clear();*/
-			break;
-		}
-		case 12:
-		{
 			updateDogFile(/*dogIdTree*/);
 			break;
 		}
-		case 13:
+		case 12:
 		{
 			cout << "Thank you, now exiting..." << endl << endl;
 			break;
@@ -195,11 +194,7 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/, HashMap& dogH
 	return true;
 }
 
-/* This function will be deleted later
-because it will be combined with the
-readDogsToHashFromFile function
-*/
-bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
+bool readDogsFromFile(HashMap& dogHash, avlTree& dogTree)
 {
 	fstream dogFile;
 
@@ -221,41 +216,14 @@ bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 		getline(dogFile, tempDesc, '\n');
 
 		Dog* dog = new Dog(tempId, tempName, tempAge, tempGender, tempBreed, tempDesc);
-		//dogTree.add(*dog);
-	}
-	dogFile.close();
-	return true;
-}
-
-/*JASON I changed the file a lot.  Reading from it will be much easier if
-we just comment delimit everything by comments and delimit the last entry by a newline*/
-bool readDogsToHashFromFile(HashMap& dogHash)
-{
-	fstream dogFile;
-
-	dogFile.open(FILENAME, fstream::in);
-	while (!dogFile.eof())
-	{
-		string tempId = "";
-		string tempName = "";
-		string tempAge = "";
-		string tempGender = "";
-		string tempBreed = "";
-		string tempDesc = "";
-
-		getline(dogFile, tempId, ',');
-		getline(dogFile, tempName, ',');
-		getline(dogFile, tempAge, ',');
-		getline(dogFile, tempGender, ',');
-		getline(dogFile, tempBreed, ',');
-		getline(dogFile, tempDesc, '\n');
 		
-		Dog* dog = new Dog(tempId, tempName, tempAge, tempGender, tempBreed, tempDesc);
+		//Populate the Hash Table
 		dogHash.put(*dog);
 		Dog::keyNumGenerator--;
-		/*Need to decrement keyNumGenerator because every time a Dog gets passed to a function, it is technically copied and generateId() is called.
-		Run this code without the decrement to see what happens to keyNumGenerator.  cout << Dog::keyNumGenerator << " ";
-		*/
+
+		//Populate the AVL Tree
+		dogTree.insert(*dog);
+		Dog::keyNumGenerator--;
 	}
 	dogFile.close();
 	return true;
@@ -271,7 +239,7 @@ bool updateDogFile(/*BinaryTree& dogIdTree*/)
 	return true;
 }
 
-bool addDog()
+bool addDog(HashMap& dogHash, avlTree& dogTree)
 {	/*JAMES I've coded this to simply assemble a dog object from inputted data, but where this dog object goes is pretty important. 
 	Does it get written to 'dog.txt'? Attached to the linked list or hash table? I can do any of those things, we just need to figure out which*/
 	Dog* newDog = new Dog;
@@ -329,12 +297,10 @@ bool addDog()
 		cout << "Dog finalized. Returning to main menu..." << endl;
 		system("pause"); system("CLS");
 	}
-
-	return true;
 	return true;
 }
 
-bool removeDog()
+bool removeDog(HashMap& dogHash, avlTree& dogTree)
 {
 	return true;
 }
@@ -360,24 +326,6 @@ bool displayDogInfoByIdSearch(HashMap& dogHash)
 	return true;
 }
 
-bool displayDogsInHashSequence(HashMap& dogHash)
-{
-	dogHash.display();
-	return true;
-}
-
-bool displayDogsInKeySequence()
-{
-	// call the BST in-order traversal
-	return true;
-}
-
-bool displayIndentedTree()
-{
-	// call the display tree function (avl tree)?
-	return true;
-}
-
 /*
 Load Factor
 Longest Linked List
@@ -385,7 +333,6 @@ Average number of nodes in linked lists 8
 */
 bool displayEfficiencyReport()
 {
-	
 	return true;
 }
 

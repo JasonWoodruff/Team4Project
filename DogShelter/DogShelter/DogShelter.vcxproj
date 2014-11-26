@@ -66,9 +66,11 @@
   <ItemGroup>
     <ClCompile Include="Dog.cpp" />
     <ClCompile Include="DogShelterMain.cpp" />
+    <ClCompile Include="DogTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dog.h" />
+    <ClInclude Include="DogTree.h" />
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="LinkedHashEntry.h" />
   </ItemGroup>
