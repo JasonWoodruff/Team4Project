@@ -144,12 +144,29 @@ public:
 
 int getLast3Digits(string dogId)
 {
+	for (int i = 0; i < 3; i++) //tests if all the characters in the string are numbers; if one is not a digit, return false
+	{
+		if (isdigit(dogId[i]) == false)
+		{
+			cout << "Enter only numeric characters for a search by ID number." << endl;
+			cout << "(ie '001' or '024')" << endl;
+			system("pause");
+			return -1;
+		}
+	}
+	
 	if (dogId.length() >= 3)
 	{
 		string last3Str = dogId.substr(dogId.length() - 3, 3);
 		int last3Num = atoi(last3Str.c_str());
 		return last3Num;
 	}
+	else {cout<<"The Dog ID number must be at least 3 digits long."<<endl;
+	      cout<<"(ie '001' or '024')"<<endl;
+	      system("pause");
+	}
+	
+	
 	return -1;
 }
 
