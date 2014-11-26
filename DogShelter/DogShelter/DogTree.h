@@ -78,6 +78,12 @@ public:
 			display(root, n);
 		}
 	}
+	
+	//james included public: getroot() for search functions
+	avl_node* getroot()
+	{
+		return root;
+	}
 
 	//inorder
 	void inorder()
