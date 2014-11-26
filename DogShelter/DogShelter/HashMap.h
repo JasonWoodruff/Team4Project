@@ -146,9 +146,13 @@ public:
 
 int getLast3Digits(string dogId)
 {
-	string last3Str = dogId.substr(dogId.length() - 3, 3);
-	int last3Num = atoi(last3Str.c_str());
-	return last3Num;
+	if (dogId.length() >= 3)
+	{
+		string last3Str = dogId.substr(dogId.length() - 3, 3);
+		int last3Num = atoi(last3Str.c_str());
+		return last3Num;
+	}
+	return -1;
 }
 
 #endif
