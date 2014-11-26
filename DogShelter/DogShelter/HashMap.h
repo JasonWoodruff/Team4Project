@@ -8,8 +8,6 @@
 
 using namespace std;
 
-//this header file doesn't compile, don't include quite yet
-
 const int TABLE_SIZE = 31; //modified
 int getLast3Digits(string dogId); /*JASON This function converts the last 3 characters of a string into an integer*/
 
