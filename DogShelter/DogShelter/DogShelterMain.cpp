@@ -339,7 +339,7 @@ bool validate(string input){
 }*/
 
 
-
+/*
 Bryson -- updated this function and the getLast3Digits function so it won't crash (11/26/2014)
 */
 bool displayDogInfoByIdSearch(HashMap& dogHash)
@@ -371,6 +371,9 @@ Average number of nodes in linked lists 8
 */
 bool displayEfficiencyReport()
 {
+	cout << "Load Factor " << endl;
+	cout << "Longest Linked List " << endl;
+	cout << "Average number of nodes in linked lists " << endl;
 	return true;
 }
 
