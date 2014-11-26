@@ -27,7 +27,6 @@ using namespace std;
 bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
 bool readDogsToHashFromFile(HashMap& dogHash);							//open the input file and read the dogs into a hash
 
-Dog* addToDog(string str); // will return a Dog, no longer need this in my opinion (JASON)
 bool updateDogFile(/*BinaryTree& dogIdTree*/);			//probably want to change this later to take arguments
 
 bool mainMenu();					//display the main menu
@@ -251,75 +250,6 @@ bool readDogsToHashFromFile(HashMap& dogHash)
 	}
 	dogFile.close();
 	return true;
-}
-
-
-/*
-JASON - I don't think we need to use this.  
-Check out ReadDogsToHashFromFile() for a working example that is simpler
-
-BRYSON - I agree.
-
-addToDog(string str)
-Precondition: A string containing the data to be stored within the Dog class
-Postcondition: Creates a new object of class Dog and then return it.
-
-Notes: temporary not meant for linked list
-This code was written by Sam Song and then adapted for linked lists/ binary search tree
-
-Returns a Dog object from the string representation
-DOGID, dog name, dog gender, dog age, dog breed, dog description. <-- period at end is important
-*/
-
-Dog* addToDog(string str)
-{
-	int segmentNo = 0;
-	string temp = "";
-	string segment[7];
-
-	map<char, int> ignore; //0 = ignore character, 1 = end of segment, 2 stop reading
-	ignore['<'] = 0;
-	ignore['>'] = 2;
-	ignore['.'] = 2;
-	ignore['/'] = 2;
-	ignore[','] = 1;
-	for (int i = 0; i < str.length(); i++)
-	{
-		char ch = str.at(i);
-
-		if (ignore.count(ch) < 1)
-		{
-			temp += ch;
-		} //adds char to temporary string for that particular segment
-		else
-		{
-			int instruction = ignore.find(ch)->second;
-			switch (instruction)
-			{
-			case 0:	//ignores that particular character.
-				break;
-			case 1:	//moves onto next segment.
-				segment[segmentNo] = temp;
-				segmentNo++;
-				//				cout << "Segment has been successfully added." << endl;
-				temp = ""; //empties temp
-				//aDog.addData(temp); 
-				break;
-			case 2:
-				//				cout << "Segment has been successfully added." << endl;
-				segment[segmentNo] = temp;
-			}
-		}
-	}
-	Dog *aDog = new Dog(segment[0], segment[1], segment[2], segment[3], segment[4], segment[5]);
-	return aDog;
-
-	/*string partsOfDog[] = { "ID", "Name", "Gender", "Age", "Breed", "Description", "extra?" };
-	cout << "Finished reading in dog with " << endl;
-	for (int i = 0; i < 6; i++)
-		cout << partsOfDog[i] << ": " << segment[i] << endl;
-	cout << endl;
-	return 0;*/
 }
 
 bool updateDogFile(/*BinaryTree& dogIdTree*/)
