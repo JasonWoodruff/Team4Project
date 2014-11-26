@@ -145,7 +145,7 @@ public:
 int getLast3Digits(string dogId)
 {
 	for (int i = 0; i < 3; i++) //included by james, tests if all the characters in the string are numbers; 
-				    //if one is not a digit, return false
+							    //if one is not a digit, return false
 	{
 		if (isdigit(dogId[i]) == false)
 		{
@@ -162,7 +162,7 @@ int getLast3Digits(string dogId)
 		int last3Num = atoi(last3Str.c_str());
 		return last3Num;
 	}
-	else {cout<<"The Dog ID number must be at least 3 digits long."<<endl;
+	else {cout<<"The Dog ID number must be at least 3 digits long."<<endl; //james included error message if dogId is less than 3 digits long
 	      cout<<"(ie '001' or '024')"<<endl;
 	      system("pause");
 	}
