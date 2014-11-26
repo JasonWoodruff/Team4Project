@@ -33,8 +33,8 @@ bool mainMenu();					//display the main menu
 int getMainMenuChoice();
 bool processMainMenuChoice(int choice/*, BinaryTree& dogIdTree*/, HashMap& dogHash);
 
-bool addDog();						//add a dog to the tree
-bool removeDog();					//delete a dog from the tree
+bool addDog();						//add a dog to the tree and hash
+bool removeDog();					//delete a dog from the tree and hash
 bool displayDogInfoByIdSearch();	//displays all of a dog's info if it's found with an id search
 bool displayDogsInHashSequence(HashMap& dogHash);	//display dogs in hash sequence
 bool displayDogsInKeySequence();	//display dogs in key sequence
@@ -202,23 +202,29 @@ readDogsToHashFromFile function
 */
 bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/)
 {
-	ifstream infile;
-	infile.open(FILENAME.c_str());
-	// will read in dogs hre
-	string temp;
-	cout << "File contains: " << endl;
-	while (getline(infile, temp))
-	{
-		//Dog(int a, string strID, string strN, string strB, string strS, string strD);
-		cout << temp << endl;
-		Dog* currentDog = addToDog(temp);
-		/*
-			This is where you will add the dogs
-		*/
+	fstream dogFile;
 
+	dogFile.open(FILENAME, fstream::in);
+	while (!dogFile.eof())
+	{
+		string tempId = "";
+		string tempName = "";
+		string tempAge = "";
+		string tempGender = "";
+		string tempBreed = "";
+		string tempDesc = "";
+
+		getline(dogFile, tempId, ',');
+		getline(dogFile, tempName, ',');
+		getline(dogFile, tempAge, ',');
+		getline(dogFile, tempGender, ',');
+		getline(dogFile, tempBreed, ',');
+		getline(dogFile, tempDesc, '\n');
+
+		Dog* dog = new Dog(tempId, tempName, tempAge, tempGender, tempBreed, tempDesc);
+		//dogTree.add(*dog);
 	}
-	cout << endl;
-	infile.close();
+	dogFile.close();
 	return true;
 }
 
