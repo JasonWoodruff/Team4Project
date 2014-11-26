@@ -15,6 +15,7 @@ Kevin Chen		-	Binary Search Tree
 */
 
 #include <iostream>
+#include <ctype.h> //included by James for 'isdigit()', to better validate Dog ID number inputs
 #include <Windows.h> //included by James for 'system("CLS")', a clear screen command for aesthetic purposes
 #include <string>
 #include <fstream>
@@ -308,6 +309,36 @@ bool removeDog(HashMap& dogHash, avlTree& dogTree)
 
 /*NOTE FOR LATER: We need a validation function, program WILL CRASH if the string passed to get is less than 3 chars. 
 The hash algorithm needs the last 3 chars.
+
+/* JAMES ^ I wrote the below function and have been trying to commit it to github for hours; by the time I just 
+manually put it in on github, Bryson had written last3digits() to validate user input. If we can find any use for 
+this function, let me know. 
+
+I'll be incorporating the isdigit() loop into last3digits() to better validate 
+
+bool validate(string input){
+	if (input.length() != 3)
+{ 
+	cout << "Dog ID number must be exactly three characters." << endl; 
+	cout << "(ie '001' or '024')" << endl;
+	system("pause"); 
+	return false;
+}
+	for (int i = 0; i < 3; i++) //tests if all the characters in the string are numbers; if one is not a digit, return false
+	{
+		if (isdigit(input[i]) == false)
+		{
+			cout << "Enter only numeric characters for a search by ID number." << endl;
+			cout << "(ie '001' or '024')" << endl;
+			system("pause");
+			return false;
+		}
+	}
+
+	return true; //if both conditions check out, return true and progress with the search
+}*/
+
+
 
 Bryson -- updated this function and the getLast3Digits function so it won't crash (11/26/2014)
 */
