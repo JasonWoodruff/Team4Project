@@ -144,7 +144,8 @@ public:
 
 int getLast3Digits(string dogId)
 {
-	for (int i = 0; i < 3; i++) //tests if all the characters in the string are numbers; if one is not a digit, return false
+	for (int i = 0; i < 3; i++) //included by james, tests if all the characters in the string are numbers; 
+				    //if one is not a digit, return false
 	{
 		if (isdigit(dogId[i]) == false)
 		{
