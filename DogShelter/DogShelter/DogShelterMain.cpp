@@ -10,8 +10,8 @@ Bryson Li		-	I/O
 James Juchau	-	Hashed Table
 Kevin Chen		-	Binary Search Tree
 
-@version	1.5
-@since		11/25/2014
+@version	1.74
+@since		11/26/2014
 */
 
 #include <iostream>
@@ -305,7 +305,12 @@ bool removeDog(HashMap& dogHash, avlTree& dogTree)
 	return true;
 }
 
-/*NOTE FOR LATER: We need a validation function, program WILL CRASH if the string passed to get is less than 3 chars.  The hash algorithm needs the last 3 chars.*/
+
+/*NOTE FOR LATER: We need a validation function, program WILL CRASH if the string passed to get is less than 3 chars. 
+The hash algorithm needs the last 3 chars.
+
+Bryson -- updated this function and the getLast3Digits function so it won't crash (11/26/2014)
+*/
 bool displayDogInfoByIdSearch(HashMap& dogHash)
 {
 	string input;
@@ -313,16 +318,18 @@ bool displayDogInfoByIdSearch(HashMap& dogHash)
 	cout << "Enter the ID here: ";
 	cin >> input;
 
-	Dog dog = dogHash.get(input);
+	// getLast3Digits(input) will return -1 if the string is not at least 3 digits
+	if (getLast3Digits(input) != -1)
+	{
+		Dog dog = dogHash.get(input);
 
-	if (dog.getName() == "")
-		cout << "Dog not found" << endl << endl;
+		if (dog.getName() == "")
+			cout << "Dog not found" << endl << endl;
+		else
+			cout << dogHash.get(input).toString() << endl;
+	}
 	else
-		cout << dogHash.get(input).toString() << endl;
-
-	// call the get function of the Hash
-	// Display the Dog (override the ostream? <<)
-	// write a function to verify that ID is entered in correct format?
+		cout << "Invalid ID entered." << endl << endl;
 	return true;
 }
 
