@@ -17,11 +17,8 @@ Kevin Chen		-	Binary Search Tree
 #include <iostream>
 #include <string>
 #include <fstream>
-/* 2 includes below not longer needed? */
-#include <vector>//originally included by Sam Song
-#include <map>//originally included by Sam Song
 #include "Dog.h"
-#include "HashMap.h" //was previously "LinkedHashEntry.h"
+#include "HashMap.h"
 using namespace std;
 
 bool readDogsToTreeFromFile(/*BinaryTree& dogIdTree*/);		//open the input file and read the dogs into a tree
@@ -35,9 +32,9 @@ bool processMainMenuChoice(int choice/*, BinaryTree& dogIdTree*/, HashMap& dogHa
 
 bool addDog();						//add a dog to the tree and hash
 bool removeDog();					//delete a dog from the tree and hash
-bool displayDogInfoByIdSearch();	//displays all of a dog's info if it's found with an id search
+bool displayDogInfoByIdSearch(HashMap& dogHash);	//displays all of a dog's info if it's found with an id search
 bool displayDogsInHashSequence(HashMap& dogHash);	//display dogs in hash sequence
-bool displayDogsInKeySequence();	//display dogs in key sequence
+bool displayDogsInKeySequence(/*BinaryTree& dogIdTree*/);	//display dogs in key sequence
 bool displayIndentedTree();			//print the indented tree
 bool displayEfficiencyReport();		//print an efficiency report
 
@@ -83,6 +80,7 @@ int main()
 	return 0;
 }
 
+//JASON: Menu choices 1 and 2 will be consolidated later to: Load the Database
 bool mainMenu()
 {
 	cout << "-----------------Main Menu-----------------" << endl << endl;
@@ -149,7 +147,7 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/, HashMap& dogH
 		}
 		case 5:
 		{
-			displayDogInfoByIdSearch();
+			displayDogInfoByIdSearch(dogHash);
 			break;
 		}
 		case 6:
@@ -164,12 +162,12 @@ bool processMainMenuChoice(int choice /*, BinaryTree& dogIdTree*/, HashMap& dogH
 		}
 		case 8:
 		{
-			displayDogsInKeySequence();
+			displayDogsInKeySequence(); //will display dogs by Inorder Tree traversal
 			break;
 		}
 		case 9:
 		{
-			displayIndentedTree();
+			displayIndentedTree(); //call the Tree function that displays the tree
 			break;
 		}
 		case 10:
@@ -250,9 +248,13 @@ bool readDogsToHashFromFile(HashMap& dogHash)
 		getline(dogFile, tempGender, ',');
 		getline(dogFile, tempBreed, ',');
 		getline(dogFile, tempDesc, '\n');
-
+		
 		Dog* dog = new Dog(tempId, tempName, tempAge, tempGender, tempBreed, tempDesc);
 		dogHash.put(*dog);
+		Dog::keyNumGenerator--;
+		/*Need to decrement keyNumGenerator because every time a Dog gets passed to a function, it is technically copied and generateId() is called.
+		Run this code without the decrement to see what happens to keyNumGenerator.  cout << Dog::keyNumGenerator << " ";
+		*/
 	}
 	dogFile.close();
 	return true;
@@ -278,15 +280,24 @@ bool removeDog()
 	return true;
 }
 
-bool displayDogInfoByIdSearch()
+/*NOTE FOR LATER: We need a validation function, program WILL CRASH if the string passed to get is less than 3 chars.  The hash algorithm needs the last 3 chars.*/
+bool displayDogInfoByIdSearch(HashMap& dogHash)
 {
 	string input;
-	cout << "Enter the ID of the Dog to search for.\nUse the format \"DOG###\" -> ";
+	cout << "Enter the ID of the Dog to search for.\nUse the format \"DOG###\n";
+	cout << "Enter the ID here: ";
 	cin >> input;
-	// call the search function of the BST
+
+	Dog dog = dogHash.get(input);
+
+	if (dog.getName() == "")
+		cout << "Dog not found" << endl << endl;
+	else
+		cout << dogHash.get(input).toString() << endl;
+
+	// call the get function of the Hash
 	// Display the Dog (override the ostream? <<)
 	// write a function to verify that ID is entered in correct format?
-	cout << endl;
 	return true;
 }
 

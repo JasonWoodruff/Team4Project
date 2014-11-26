@@ -25,20 +25,28 @@ public:
 		for (int i = 0; i < TABLE_SIZE; i++)
 			table[i] = nullptr;
 	}
-
+	
 	/*JASON The user would type something like "DOG003" which would get passed to get*/
 	Dog get(string key)
 	{
 		int hash = (getLast3Digits(key) % TABLE_SIZE); /*JASON note how the conversion happens here.  We don't want to change the key itself because it's needed for comparisons with other Dogs in the table later.  Only int hash changes.*/
 		if (table[hash] == nullptr)
-			cout << "Dog not found" << endl;
+		{
+			Dog notFound("", "", "", "", "", "");
+			Dog::keyNumGenerator--; //Decrement to counteract the creation of a new Dog
+			return notFound;
+		}
 		else
 		{
 			LinkedHashEntry *entry = table[hash];
 			while (entry != nullptr && entry->getKey() != key) /*JASON This is one of the comparisons I mentioned.*/
 				entry = entry->getNext();
 			if (entry == nullptr)
-				cout << "Dog not found" << endl;
+			{
+				Dog notFound("", "", "", "", "", "");
+				Dog::keyNumGenerator--; //Decrement to counteract the creation of a new Dog
+				return notFound;
+			}
 			else
 				return entry->getValue();
 		}

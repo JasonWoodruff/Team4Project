@@ -3,12 +3,12 @@ using namespace std;
 #include<iostream>
 #include <string>
 #include <sstream>
-#include <queue>
 
 #include "Dog.h"
 
-static int keyNumGenerator = 1; //increments when each new instance of Dog is created
-static queue<string> nextAvailable;
+int Dog::keyNumGenerator = 1; //increments when each new instance of Dog is created
+queue<string> Dog::nextAvailable;
+
 /*	We could use a data item here called NextAvailable that keeps track of freed up IDs.
 	When Dogs are removed, we want their ids to get used up again ASAP.  NextAvailable
 	could be a chain of linked nodes like a queue.
@@ -23,7 +23,7 @@ Dog::Dog()
 Dog::Dog(string strID, string strN, string strGen, string strAge, string strB, string strD) :
 ID(strID), name(strN), gender(strGen), age(strAge), breed(strB), description(strD)
 {
-	keyNumGenerator++; 
+	keyNumGenerator++;
 }
 
 string Dog::getID() const
@@ -96,6 +96,6 @@ string Dog::toString()
 
 ostream& operator<<(ostream& os, const Dog& dt)
 {
-    os << ID << "," << name << "," << age << "," << gender << "," << breed << "," << description;
+    os << dt.getID() << "," << dt.getName() << "," << dt.getAge() << "," << dt.getGender() << "," << dt.getBreed() << "," << dt.getDescription();
     return os;
 }

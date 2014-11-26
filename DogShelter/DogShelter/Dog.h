@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <queue>
 
 using namespace std;
 
@@ -22,6 +23,9 @@ protected:
 	string generateID();
 	
 public:
+	static int keyNumGenerator; //counts number of keys generated
+	static queue<string> nextAvailable;
+
 	/*Default constructor creates a dogID only*/
 	Dog();
 	
