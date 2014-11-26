@@ -15,6 +15,7 @@ Kevin Chen		-	Binary Search Tree
 */
 
 #include <iostream>
+#include <Windows.h> //included by James for 'system("CLS")', a clear screen command for aesthetic purposes
 #include <string>
 #include <fstream>
 /* 2 includes below not longer needed? */
@@ -269,7 +270,65 @@ bool updateDogFile(/*BinaryTree& dogIdTree*/)
 }
 
 bool addDog()
-{
+{	/*JAMES I've coded this to simply assemble a dog object from inputted data, but where this dog object goes is pretty important. 
+	Does it get written to 'dog.txt'? Attached to the linked list or hash table? I can do any of those things, we just need to figure out which*/
+	Dog* newDog = new Dog;
+	string newName, newGender, newAge, newBreed, newDescription;
+	char yn='x'; //for finalizing 
+	cout << "Please enter the dog's name." << endl;
+	cin.ignore();
+	getline(cin, newName); newName[0] = toupper(newName[0]);          //capitalizes first letter to homogenize data
+	
+	while (newGender != "Male" && newGender != "Female")
+	{
+		cout << "\nEnter the dog's gender ('Male' or 'Female')." << endl;
+		cin >> newGender; newGender[0] = toupper(newGender[0]);        //capitalizes the first character to simplify while loop
+		if (newGender != "Male" && newGender != "Female"){ cout << "Only the inputs 'Male' and 'Female' are acceptable." << endl; system("pause"); }
+	}
+
+	cout << "\nEnter a qualitative estimate of the dog's age (ie 'Puppy', 'Young', 'Older')." << endl;
+	cin.ignore();
+	getline(cin, newAge); newAge[0] = toupper(newAge[0]);			   
+
+
+	cout << "\nEnter the dog's breed (ie 'Beagle' or 'Scottish Terrier')." << endl;
+	getline(cin, newBreed);	newBreed[0] = toupper(newBreed[0]);
+
+
+	cout << "\nEnter a brief description of this dog's personality." << endl;
+	getline(cin, newDescription); newDescription[0] = toupper(newDescription[0]);
+
+	system("CLS"); //clears screen for aesthetics
+
+	cout << "Name: " << newName << endl;
+	cout << "Age: " << newAge << endl;
+	cout << "Gender: " << newGender << endl;
+	cout << "Breed: " << newBreed << endl;
+	cout << "Description: " << newDescription << endl;
+	
+	while (yn != 'Y' && yn != 'N')
+	{
+		cout << "Finalize this new dog? (Y/N)" << endl;
+		cin >> yn;
+		yn = toupper(yn);
+		if (yn != 'Y' && yn != 'N'){ cout << "Only the characters 'Y' and 'N' are acceptable." << endl; system("pause");}
+	}
+
+	if (yn == 'N'){ cout << "Dog discarded. Returning to main menu..." << endl; system("pause"); system("CLS"); }
+	if (yn == 'Y')
+	{ 
+		newDog->setName(newName); 
+		newDog->setBreed(newBreed);
+		newDog->setGender(newGender);
+		newDog->setAge(newAge);
+		newDog->setDescription(newDescription);
+		/*Obviously this ultimately does nothing. But we can assign this dog pointer to anything once I know where addDog()
+		actually assigns a dog to*/
+		cout << "Dog finalized. Returning to main menu..." << endl;
+		system("pause"); system("CLS");
+	}
+
+	return true;
 	return true;
 }
 
